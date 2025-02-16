@@ -263,7 +263,7 @@ const ChatInterface = forwardRef((props, ref) => {
       
       if (error.message.includes('API key')) {
         addMessage({
-          text: 'There was a problem with your API key. Please check it and try again.',
+          text: 'There was a problem. Please check you api key or try again after 60 seconds.',
           sender: 'system'
         });
       } else {

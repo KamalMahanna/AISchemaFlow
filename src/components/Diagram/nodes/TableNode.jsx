@@ -45,11 +45,6 @@ const TableNode = ({ data }) => {
               )}
               <span className="text-gray-700 truncate flex items-center">
                 {field.name}
-                {field.isForeignKey && (
-                  <span className="ml-1.5 text-xs text-blue-500" title="Foreign Key">
-                    {`➜ ${field.references?.table}.${field.references?.field}`}
-                  </span>
-                )}
               </span>
               <span className="text-gray-400 ml-2 flex-shrink-0">{field.type}</span>
             </div>

@@ -9,16 +9,30 @@ class AIService {
   initialize() {
     const apiKey = localStorage.getItem('gemini_api_key');
     if (!apiKey) {
-      throw new Error('API key not found. Please set your Gemini API key.');
+      throw new Error('API key not found. Please set your Gemini API key in the settings.');
     }
-    this.genAI = new GoogleGenerativeAI(apiKey);
-    this.model = this.genAI.getGenerativeModel({ model: 'gemini-pro' });
+    try {
+      this.genAI = new GoogleGenerativeAI(apiKey);
+      this.model = this.genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+    } catch (error) {
+      if (error.toString().includes('GoogleGenerativeAI Error')) {
+        throw new Error(
+          'Please check your API key or provide a valid one from https://makersuite.google.com/app/apikey'
+        );
+      }
+      throw error;
+    }
   }
 
   async parseSchemaDescription(description) {
     try {
       if (!this.genAI || !this.model) {
-        this.initialize();
+        try {
+          this.initialize();
+        } catch (error) {
+          console.error('Initialization Error:', error);
+          throw error;
+        }
       }
 
       const modificationPatterns = {
@@ -124,7 +138,18 @@ class AIService {
         7. Include references for foreign key fields
       `;
 
-      const result = await this.model.generateContent(prompt);
+      let result;
+      try {
+        result = await this.model.generateContent(prompt);
+      } catch (error) {
+        if (error.toString().includes('GoogleGenerativeAI Error')) {
+          throw new Error(
+            'Please check your API key or provide a valid one from https://makersuite.google.com/app/apikey'
+          );
+        }
+        throw error;
+      }
+      
       const response = result.response;
       const text = response.text();
 
