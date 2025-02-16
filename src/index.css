@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 min-h-screen;
+  }
+}
+
+@layer components {
+  .chat-container {
+    @apply w-1/4 h-screen border-r border-gray-200 bg-white overflow-hidden flex flex-col z-10;
+  }
+
+  .diagram-container {
+    @apply w-3/4 h-screen bg-gray-50 relative;
+  }
+
+  .chat-message {
+    @apply p-4 border-b border-gray-100;
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+  }
+
+  .chat-input {
+    @apply p-4 border-t border-gray-200 bg-white;
+  }
+
+  .flow-container {
+    @apply w-full h-full;
+  }
+
+  .control-btn {
+    @apply px-3 py-1.5 text-white rounded transition-colors flex items-center gap-1.5 text-sm shadow-sm;
+  }
+}
+
+/* ReactFlow Custom Styles */
+.react-flow__node {
+  @apply select-none;
+}
+
+.react-flow__handle {
+  @apply opacity-0 group-hover:opacity-100 transition-opacity duration-200;
+  min-width: 8px;
+  min-height: 8px;
+}
+
+.react-flow__handle-left,
+.react-flow__handle-right {
+  transform: none;
+  top: 50%;
+}
+
+.react-flow__edge-path {
+  @apply stroke-2;
+}
+
+.react-flow__node:hover {
+  @apply z-50;
+}
+
+.react-flow__node:hover .react-flow__handle {
+  @apply opacity-100;
+}
+
+/* Edge label styles */
+.react-flow__edge-label {
+  @apply bg-white px-2 py-1 rounded shadow-sm text-xs font-medium;
+}
+
+/* Connection line styles */
+.react-flow__connection-path {
+  @apply stroke-blue-500 stroke-2;
+}
+
+/* Controls panel */
+.react-flow__controls {
+  @apply bg-white shadow rounded;
+  width: 22px !important;
+  padding: 1px !important;
+  border: none !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  margin: 8px !important;
+}
+
+.react-flow__controls-button {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  margin: 0 !important;
+  padding: 3px !important;
+  border: none !important;
+  background: white !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.react-flow__controls-button:hover {
+  background: #f3f4f6 !important;
+}
+
+.react-flow__controls-button svg {
+  width: 14px !important;
+  height: 14px !important;
+  min-width: 14px !important;
+  min-height: 14px !important;
+  fill: #4b5563 !important;
+}
+
+.controls-compact {
+  margin-bottom: 12px !important;
+}
+
+/* Guide panel */
+.guide-panel {
+  @apply bg-white p-4 rounded-lg shadow-lg;
+  max-width: 350px !important;
+  line-height: 1.6;
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  margin-left: 0 !important;
+}
+
+/* Panel positions */
+.react-flow__panel.top-left {
+  @apply ml-4;
+}
+
+.react-flow__panel.top-right {
+  @apply flex flex-row gap-2 m-4;
+}
+
+/* Node dragging styles */
+.react-flow__node-dragging {
+  @apply opacity-70;
+}
+
+/* Modern scrollbar for chat messages */
+.chat-message::-webkit-scrollbar {
+  width: 4px;
+  background: transparent;
+}
+
+.chat-message::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 4px;
+}
+
+.chat-message::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Textarea scrollbar */
+textarea.resize-none {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+textarea.resize-none::-webkit-scrollbar {
+  width: 4px;
+  background: transparent;
+}
+
+textarea.resize-none::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 4px;
+}
+
+textarea.resize-none::-webkit-scrollbar-track {
+  background: transparent;
+}

@@ -1,0 +1,10 @@
+@keyframes dashdraw {
+  to {
+    stroke-dashoffset: -8;
+  }
+}
+
+.animated-edge {
+  stroke-dasharray: 4 4;
+  animation: dashdraw 1s linear infinite;
+}
